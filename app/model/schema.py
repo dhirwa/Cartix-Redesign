@@ -46,26 +46,36 @@ ctxgss_schema=Cartix_savinggroupSchema(many=True)
 
 class Cartix_financialInstSchema(Schema):
     ctxfn_id= fields.Integer(dump_only = True)
-    ctxfn_name=fields.String(50)
-    ctxfn_type=fields.String(50)
+    ctxfn_name=fields.String()
+    ctxfn_type=fields.String()
+    ctxfn_province=fields.Integer()
+    ctxfn_district=fields.Integer()
+    ctxfn_sector=fields.Integer()
 
 ctxfn_schema=Cartix_financialInstSchema()
 ctxfns_schema=Cartix_financialInstSchema(many=True)
 
 class Cartix_agentSchema(Schema):
     ctxa_id = fields.Integer(dump_only = True)
-    ctxa_name = fields.String(50)
-    ctxa_type = fields.String(50)
+    ctxa_name = fields.String()
+    ctxa_type = fields.String()
+    ctxa_province=fields.Integer()
+    ctxa_district=fields.Integer()
+    ctxa_sector=fields.Integer()
 
 ctxa_schema=Cartix_agentSchema()
 ctxas_schema=Cartix_agentSchema(many=True)
 
 class Cartix_populationSchema(Schema):
     ctxpp_id=fields.Integer(dump_only = True)
-    ctxpp_name=fields.String(50)
+    ctxpp_name=fields.String()
     ctxpp_total=fields.Integer()
     ctxpp_male=fields.Integer()
     ctxpp_female=fields.Integer()
+    ctxpp_province=fields.Integer()
+    ctxpp_district=fields.Integer()
+    ctxpp_sector=fields.Integer()
+
 
 ctxpp_schema=Cartix_populationSchema()
 ctxpps_schema=Cartix_populationSchema(many=True)
