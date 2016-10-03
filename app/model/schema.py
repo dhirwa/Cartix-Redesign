@@ -36,8 +36,8 @@ class Cartix_savinggroupSchema(Schema):
     ctxsg_male=fields.Integer()
     ctxsg_fundingNgo = fields.String()
     ctxsg_partnerNgo = fields.String()
-    ctxsg_amount= fields.bigint()
-    ctxsg_outstLoan= fields.bigint()
+    ctxsg_amount= fields.Integer()
+    ctxsg_outstLoan= fields.Integer()
 
 ctxsg_schema=Cartix_savinggroupSchema()
 ctxgss_schema=Cartix_savinggroupSchema(many=True)
