@@ -6,12 +6,12 @@ class Cartix_provinceSchema(Schema):
     ctxp_name = fields.String()
 
 ctxp_schema = Cartix_provinceSchema()
-ctxps_schema = Cartix_provinceSchema(many = true)
+ctxps_schema = Cartix_provinceSchema(many = True)
 
 class Cartix_districtSchema(Schema):
     ctxd_id = fields.Integer(dump_only = True)
     ctxd_name = fields.String()
-    ctxp_pid= fields.Integer()
+    ctxd_province= fields.Integer()
 
 ctxd_schema = Cartix_districtSchema()
 ctxds_schema = Cartix_districtSchema(many=True)
@@ -19,7 +19,7 @@ ctxds_schema = Cartix_districtSchema(many=True)
 class Cartix_sectorSchema(Schema):
     ctxs_id = fields.Integer(dump_only = True)
     ctxs_name = fields.String()
-    ctxd_did = fields.Integer()
+    ctxs_district = fields.Integer()
 
 ctxs_schema = Cartix_sectorSchema()
 ctxss_schema = Cartix_sectorSchema(many = True)
@@ -68,7 +68,6 @@ ctxas_schema=Cartix_agentSchema(many=True)
 
 class Cartix_populationSchema(Schema):
     ctxpp_id=fields.Integer(dump_only = True)
-    ctxpp_name=fields.String()
     ctxpp_total=fields.Integer()
     ctxpp_male=fields.Integer()
     ctxpp_female=fields.Integer()

@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: 046e87a52cc5
+Revision ID: 1eccebf02185
 Revises: None
-Create Date: 2016-10-03 17:49:41.330474
+Create Date: 2016-10-04 12:21:02.194233
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '046e87a52cc5'
+revision = '1eccebf02185'
 down_revision = None
 
 from alembic import op
@@ -24,15 +24,15 @@ def upgrade():
     op.create_table('cartix_district',
     sa.Column('ctxd_id', sa.Integer(), nullable=False),
     sa.Column('ctxd_name', sa.String(length=20), nullable=True),
-    sa.Column('ctxp_province', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['ctxp_province'], ['cartix_province.ctxp_id'], ),
+    sa.Column('ctxd_province', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['ctxd_province'], ['cartix_province.ctxp_id'], ),
     sa.PrimaryKeyConstraint('ctxd_id')
     )
     op.create_table('cartix_sector',
     sa.Column('ctxs_id', sa.Integer(), nullable=False),
     sa.Column('ctxs_name', sa.String(length=50), nullable=True),
-    sa.Column('ctxd_district', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['ctxd_district'], ['cartix_district.ctxd_id'], ),
+    sa.Column('ctxs_district', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['ctxs_district'], ['cartix_district.ctxd_id'], ),
     sa.PrimaryKeyConstraint('ctxs_id')
     )
     op.create_table('cartix_agent',
@@ -51,12 +51,12 @@ def upgrade():
     sa.Column('ctxfn_id', sa.Integer(), nullable=False),
     sa.Column('ctxfn_name', sa.String(length=50), nullable=True),
     sa.Column('ctxfn_type', sa.String(length=50), nullable=True),
-    sa.Column('ctxsg_sector', sa.Integer(), nullable=True),
-    sa.Column('ctxsg_district', sa.Integer(), nullable=True),
-    sa.Column('ctxsg_province', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['ctxsg_district'], ['cartix_district.ctxd_id'], ),
-    sa.ForeignKeyConstraint(['ctxsg_province'], ['cartix_province.ctxp_id'], ),
-    sa.ForeignKeyConstraint(['ctxsg_sector'], ['cartix_sector.ctxs_id'], ),
+    sa.Column('ctxfn_sector', sa.Integer(), nullable=True),
+    sa.Column('ctxfn_district', sa.Integer(), nullable=True),
+    sa.Column('ctxfn_province', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['ctxfn_district'], ['cartix_district.ctxd_id'], ),
+    sa.ForeignKeyConstraint(['ctxfn_province'], ['cartix_province.ctxp_id'], ),
+    sa.ForeignKeyConstraint(['ctxfn_sector'], ['cartix_sector.ctxs_id'], ),
     sa.PrimaryKeyConstraint('ctxfn_id')
     )
     op.create_table('cartix_population',
