@@ -38,6 +38,56 @@ def get_sum(json_data,prov):
     output['District Population'].append(data)
     return output,prov
 
+
+def get_svgd(json_data,prov):
+    output={'District Savinggroups':[]}
+    d=0
+    c=0
+    b=0
+    a=0
+    for item in json_data:
+        d+=1
+        c+=int(item['ctxsg_members'])
+        b+=int(item['ctxsg_amount'])
+        a+=int(item['ctxsg_outstloan'])
+    data = {'SGs_count':d,'SGs_membership':c,'SGs_amount':b,'SGs_outstLoan':a}
+    output['District Savinggroups'].append(data)
+    return output,prov
+
+def get_svgp(json_data,prov):
+    output={'Province Savinggroups':[]}
+    d=0
+    c=0
+    b=0
+    a=0
+
+    for item in json_data:
+        d+=1
+        c+=int(item['ctxsg_members'])
+        b+=int(item['ctxsg_amount'])
+        a+=int(item['ctxsg_outstloan'])
+    data = {'SGs_count':d,'SGs_membership':c,'SGs_amount':b,'SGs_outstLoan':a}
+    output['Province Savinggroups'].append(data)
+    return output,prov
+
+def get_svgs(json_data,prov):
+    output={'Sector Savinggroups':[]}
+    d=0
+    c=0
+    b=0
+    a=0
+
+    for item in json_data:
+        d+=1
+        c+=int(item['ctxsg_members'])
+        b+=int(item['ctxsg_amount'])
+        a+=int(item['ctxsg_outstloan'])
+    data = {'SGs_count':d,'SGs_membership':c,'SGs_amount':b,'SGs_outstLoan':a}
+    output['Sector Savinggroups'].append(data)
+    return output,prov
+
+
+
 def get_s(json_data,dis):
     output={'Province Population':[]}
     dd=0

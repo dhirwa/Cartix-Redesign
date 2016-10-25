@@ -1,0 +1,8 @@
+<!doctype html>
+<html>
+   <title>Upload an excel file</title>
+   <h1>Excel file upload (xls, xlsx, ods please)</h1>
+   <form action="{{url_for('importin')}}" method=post enctype=multipart/form-data><p>
+   <input type=file name=file><input type=submit value=Upload>
+   </form>
+</html>

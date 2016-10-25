@@ -66,13 +66,48 @@ def get_popp(prov):
         return jsonify({'Message':'0'})
 
 
-@app.route('/sum')
-def sum():
-    provs=Cartix_population.query.with_entities(func.sum(Cartix_population.ctxpp_total))
-    #grand_total = db.session.query(func.sum(models.Blogs.IMAGE_COUNT)).filter(models.Blogs.STATUS == 'A').scalar()
+@app.route('/getsavinggroup')
+def get_svg():
+    svgs=Cartix_savinggroup.query.all()
+    result=ctxsgs_schema.dump(svgs)
+    return jsonify({'Saving groups':result.data})
 
+@app.route('/getsavinggroup/district/<int:dist>')
+def get_svgdis(dist):
+    d=Cartix_savinggroup.query.filter_by(ctxsg_district=dist).all()
+    if d is None:
+       return jsonify({'Message':'0'})
+    else:
+    	res = ctxsgs_schema.dump(d)
+    	return jsonify(res)
+
+@app.route('/getsavinggroups/number/dist/<int:dist>')
+def get_savnd(dist):
+    provs=Cartix_savinggroup.query.filter_by(ctxsg_district=dist).all()
     if provs :
-        result=ctxpps_schema.dump(provs)
-        return jsonify({'Message':'1','Province Population':result.data})
+        json_data = ctxsgs_schema.dump(provs).data
+        pr,provs = get_svgd(json_data,provs)
+        return jsonify(pr)
+    else:
+        return jsonify({'Message':'0'})
+
+@app.route('/getsavinggroups/number/prov/<int:prov>')
+def get_savp(prov):
+    provs=Cartix_savinggroup.query.filter_by(ctxsg_province=prov).all()
+    if provs :
+        json_data = ctxsgs_schema.dump(provs).data
+        pr,provs = get_svgp(json_data,provs)
+        return jsonify(pr)
+    else:
+        return jsonify({'Message':'0'})
+
+
+@app.route('/getsavinggroups/number/sect/<int:sect>')
+def get_savs(sect):
+    provs=Cartix_savinggroup.query.filter_by(ctxsg_sector=sect).all()
+    if provs :
+        json_data = ctxsgs_schema.dump(provs).data
+        pr,provs = get_svgs(json_data,provs)
+        return jsonify(pr)
     else:
         return jsonify({'Message':'0'})

@@ -1,10 +1,15 @@
 from app.model.model import *
 from app.model.schema import *
 from app.controllers.controller import *
-from flask import jsonify,request
+from flask import jsonify,request,url_for,render_template
 import datetime
 import base64
 import os
+#import flask_excel as excel
+#import pyexcel.ext.xlsx
+#import pyexcel.ext.xls
+#from xlrd import open_workbook
+
 
 
 @app.route('/provinces/',methods=['POST'])
@@ -107,4 +112,36 @@ def pop():
         result=ctxpp_schema.dump(Cartix_population.query.get(ctxp_pop.ctxpp_id))
         return jsonify({'Message':'1','Population':result.data})
     else:
+        return jsonify({'Message':'0'})
+
+@app.route('/savinggroup/',methods=['POST'])
+def svg():
+    json_data=request.get_json()
+    if not json_data:
+        return jsonify({'Message':'No data provided'})
+    data,errors=ctxsg_schema.load(json_data)
+    if errors:
+        return jsonify(errors), 422
+
+    try:
+        ctxsg=Cartix_savinggroup(
+        ctxsg_name=data['ctxsg_name'],
+        ctxsg_creationyear=data['ctxsg_creationyear'],
+        ctxsg_sector=data['ctxsg_sector'],
+        ctxsg_district=data['ctxsg_district'],
+        ctxsg_province=data['ctxsg_province'],
+        ctxsg_female=data['ctxsg_female'],
+        ctxsg_members=data['ctxsg_members'],
+        ctxsg_male=data['ctxsg_male'],
+        ctxsg_fundingNgo=data['ctxsg_fundingNgo'],
+        ctxsg_partnerNgo=data['ctxsg_partnerNgo'],
+        ctxsg_amount=data['ctxsg_amount'],
+        ctxsg_outstLoan=data['ctxsg_outstLoan']
+        )
+        db.session.add(ctxsg)
+        db.session.commit()
+        result=ctxsg_schema.dump(Cartix_savinggroup.query.get(ctxsg.ctxsg_id))
+        return jsonify({'Message':'1','Saving group':result.data})
+
+    except:
         return jsonify({'Message':'0'})

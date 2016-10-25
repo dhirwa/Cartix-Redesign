@@ -34,37 +34,78 @@ class Cartix_savinggroupSchema(Schema):
     ctxsg_members=fields.Integer()
     ctxsg_female=fields.Integer()
     ctxsg_male=fields.Integer()
-    ctxsg_fundingNgo = fields.String()
-    ctxsg_partnerNgo = fields.String()
-    ctxsg_amount= fields.Integer()
-    ctxsg_outstLoan= fields.Integer()
+    ctxsg_fundingngo = fields.String()
+    ctxsg_partnerngo = fields.String()
+    ctxsg_status = fields.String()
+    ctxsg_amount= fields.Float()
+    ctxsg_outstloan= fields.Float()
 
 ctxsg_schema=Cartix_savinggroupSchema()
-ctxgss_schema=Cartix_savinggroupSchema(many=True)
+ctxsgs_schema=Cartix_savinggroupSchema(many=True)
 
 
 
-class Cartix_financialInstSchema(Schema):
-    ctxfn_id= fields.Integer(dump_only = True)
-    ctxfn_name=fields.String()
-    ctxfn_type=fields.String()
-    ctxfn_province=fields.Integer()
-    ctxfn_district=fields.Integer()
-    ctxfn_sector=fields.Integer()
+class Cartix_bankSchema(Schema):
+    ctxb_id=fields.Integer()
+    ctxb_province=fields.Integer()
+    ctxb_district=fields.Integer()
+    ctxb_sector=fields.Integer()
+    ctxb_name=fields.String()
+    ctxb_branches=fields.String()
 
-ctxfn_schema=Cartix_financialInstSchema()
-ctxfns_schema=Cartix_financialInstSchema(many=True)
+ctxb_schema=Cartix_bankSchema()
+ctxbs_schema=Cartix_bankSchema(many=True)
 
-class Cartix_agentSchema(Schema):
+class Cartix_mfiSchema(Schema):
+    ctxm_id=fields.Integer()
+    ctxm_province=fields.Integer()
+    ctxm_district=fields.Integer()
+    ctxm_sector=fields.Integer()
+    ctxm_name=fields.String()
+    ctxm_count=fields.Integer()
+
+ctxm_schema=Cartix_mfiSchema()
+ctxms_schema=Cartix_mfiSchema(many=True)
+
+class Cartix_nonsaccoSchema(Schema):
+    ctxnu_id=fields.Integer()
+    ctxnu_province=fields.Integer()
+    ctxnu_district=fields.Integer()
+    ctxnu_sector=fields.Integer()
+    ctxnu_name=fields.String()
+
+ctxnu_schema=Cartix_nonsaccoSchema()
+ctxnus_schema=Cartix_nonsaccoSchema(many=True)
+
+class Cartix_saccoSchema(Schema):
+    ctxsc_id=fields.Integer()
+    ctxsc_province=fields.Integer()
+    ctxsc_district=fields.Integer()
+    ctxsc_sector=fields.Integer()
+    ctxsc_name=fields.String()
+
+ctxsc_schema=Cartix_saccoSchema()
+ctxscs_schema=Cartix_saccoSchema(many=True)
+
+
+class Cartix_telcoagentSchema(Schema):
     ctxa_id = fields.Integer(dump_only = True)
-    ctxa_name = fields.String()
-    ctxa_type = fields.String()
     ctxa_province=fields.Integer()
     ctxa_district=fields.Integer()
-    ctxa_sector=fields.Integer()
+    ctxa_count=fields.Integer()
 
-ctxa_schema=Cartix_agentSchema()
-ctxas_schema=Cartix_agentSchema(many=True)
+ctxa_schema=Cartix_telcoagentSchema()
+ctxas_schema=Cartix_telcoagentSchema(many=True)
+
+class Cartix_bankagentSchema(Schema):
+    ctxba_id = fields.Integer(dump_only = True)
+    ctxba_province=fields.Integer()
+    ctxba_district=fields.Integer()
+    ctxba_count=fields.Integer()
+
+ctxba_schema=Cartix_bankagentSchema()
+ctxbas_schema=Cartix_bankagentSchema(many=True)
+
 
 class Cartix_populationSchema(Schema):
     ctxpp_id=fields.Integer(dump_only = True)
