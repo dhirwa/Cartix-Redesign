@@ -83,8 +83,8 @@ class Cartix_bank(db.Model):
     ctxb_province=db.Column(db.Integer, db.ForeignKey('cartix_province.ctxp_id'))
     ctxb_district=db.Column(db.Integer, db.ForeignKey('cartix_district.ctxd_id'))
     ctxb_sector=db.Column(db.Integer, db.ForeignKey('cartix_sector.ctxs_id'))
-    ctxb_name=db.Column(db.String(50))
-    ctxb_branches=db.Column(db.String(50))
+    ctxb_name=db.Column(db.String(100))
+    ctxb_branches=db.Column(db.String(100))
 
 class Cartix_nonsacco(db.Model):
     ctxnu_id = db.Column(db.Integer, primary_key=True)
